@@ -11,7 +11,7 @@
             I    2            I           Navas              I             Keeper             I         1          I
             I------------------------------------------------------------------------------------------------------I
             I    3            I           Bale               I             Right-Wing         I         5          I
-            |-------------------------------------------------------------------------------------------------------I
+            |------------------------------------------------------------------------------------------------------I
             I    4            I           J. Mata           I            Mid-fielder           I        14         I
             I______________________________________________________________________________________________________I
 
@@ -80,23 +80,23 @@ CREATE
 #after store it in a variable                                                                   Syntax
     a = Player.new                                                                          a = TableName.new
     #create a row in the column position
-    a.position = "Goal Keeper"                                                        a.key = value
+    a.position = "Goal Keeper"                                                              a.key = value
     #save it
-    a.save                                                                                        a.save
+    a.save                                                                                  a.save
 
 # Alternative Syntax,
 #if we want to add multiple keys and values (hash)
 
-    a = Player.new( player: "Benzema",                                          a = TableName.new(hash)
+    a = Player.new( player: "Benzema",                                                      a = TableName.new(hash)
                               position: "Forward"
                               number: "9")
-    a.save                                                                                          a.save
+    a.save                                                                                  a.save
 
 
 # If we want to create a Player and save it automatically,
 # without calling ' save '
 
-    a = Player.create(player: "Mesi",                                                a = TableName.create(hash)
+    a = Player.create(player: "Mesi",                                                       a = TableName.create(hash)
                                 position: "Center-Mid"
                                 number: "10")
 
@@ -157,41 +157,40 @@ READ
 
 UPDATE
     # First, fetch the player with id 1                                                                      Syntax
-    a = Player.find(1)                                                                                         a = TableName.find(id)
+    a = Player.find(1)                                                                                a = TableName.find(id)
     #change the row of the column to anything you want
-    a.position = "Forward"                                                                                  a.ket = value
+    a.position = "Forward"                                                                            a.key = value
     #save it
-    a.save                                                                                                            a.save
+    a.save                                                                                            a.save
 
 
     # If we want to update multiple attributes
         # fetch the player we want to update
-        a = Player .find(1)                                                                                       a = TableName.find(id)
+        a = Player .find(1)                                                                           a = TableName.find(id)
         #call attributes method an pass a hash
-        a.attributes = {                                                                                             a.attributes = { key: value}
+        a.attributes = {                                                                              a.attributes = { key: value}
             position: "Defense",
             number: 3
         }
         #than, save it
-        a.save                                                                                                           a.save
+        a.save                                                                                        a.save
 
     #Other way to update without calling ' save '
         #Fetch the player you want to update
-        a = Player.find(1)                                                                                          a = TableName.find(id)
+        a = Player.find(1)                                                                            a = TableName.find(id)
         #call update method and pass a hash, it saves it automatically
-        a.update( position: "Defense",                                                                       a.update(key:  value)
+        a.update( position: "Defense",                                                                a.update(key:  value)
                         number: 3)
 
 DELETE
     #First, find the player you want to delete
-    a = Player.find(1)                                                                                                a = TableName.find(id)
+    a = Player.find(1)                                                                                a = TableName.find(id)
     # Call the destroy method
-    a.destroy                                                                                                               a.destroy
+    a.destroy                                                                                         a.destroy
 
     #Can do it in one line, fetching the player, than use
     #destroy method
-    Player.find(1).destroy                                                                                             TableName.find(id).destroy
+    Player.find(1).destroy                                                                            TableName.find(id).destroy
 
     #We can delete all the players by using destroy_all method
-    Player.destroy_all                                                                                                    TableName.destroy_all
-
+    Player.destroy_all                                                                                TableName.destroy_all
