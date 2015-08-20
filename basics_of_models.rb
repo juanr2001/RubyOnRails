@@ -125,15 +125,15 @@
      ** Our table is called 'players'
 
                     id                      player               number               <----Columns (Left to right)
-             ________________________________________
-            I    1            I           C.Ronaldo          I         7          I    <--Look at the ' positons ' table, this player can play multiple positions
-            I--------------------------------------------------------------------I
-            I    2            I           Navas              I         1          I
-            I----------------------------------------------------------------I
-            I    3            I           Bale               I         5          I
+             _______________________________________________________________
+            I    1            I           C.Ronaldo     I         7         I    <--Look at the ' positons ' table, this player can play multiple positions
+            I---------------------------------------------------------------I
+            I    2            I           Navas         I         1         I
+            I---------------------------------------------------------------I
+            I    3            I           Bale          I         5         I
             |---------------------------------------------------------------I
-            I    4            I           J. Mata           I        14         I
-            I___________________________________I
+            I    4            I           J. Mata       I        14         I
+            I_______________________________________________________________I
 =end
 
 =begin
@@ -143,15 +143,15 @@
      ** Our table is called 'position'
 
                     id                      position                  player_id              <----Columns (Left to right)
-             ________________________________________
+             _______________________________________________________________________
             I    1            I             Left-Wing          I         1          I
-            I-------------------------------------------------------------------I
+            I-----------------------------------------------------------------------I
             I    2            I             Keeper             I         2          I
-            I--------------------------------------------------------------------I
+            I-----------------------------------------------------------------------I
             I    3            I             Right-Wing         I         1          I   <-- Notice that player with id = 1 can play two positions
-            |--------------------------------------------------------------------I
-            I    4            I           Mid-fielder           I        4         I
-            I______________________________________I
+            |-----------------------------------------------------------------------I
+            I    4            I           Mid-fielder          I        4           I
+            I_______________________________________________________________________I
 =end
 
 
@@ -172,7 +172,7 @@
         # Position Model
                 class Position < ActiveRecord::Base
                     belongs_to :player      #<- here is singular because the position belongs to ONE player.
-                                                     #<- When we use belong_to, we have to add a column with a foreing key, in this case (player_id), shown in this table (line 145).
+                                                     #<- When we use belongs_to, we have to add a column with a foreing key, in this case (player_id), shown in this table (line 145).
                 end
 
 
@@ -212,17 +212,17 @@
      ** Our table is called 'position'
 
                     id                      position                  player_id              <----Columns (Left to right)
-             ________________________________________
+             _______________________________________________________________________
             I    1            I             Left-Wing          I         1          I
-            I-------------------------------------------------------------------I
+            I-----------------------------------------------------------------------I
             I    2            I             Keeper             I         2          I
-            I--------------------------------------------------------------------I
+            I-----------------------------------------------------------------------I
             I    3            I             Right-Wing         I         1          I   <-- Notice that player with id = 1 can play two positions
-            |--------------------------------------------------------------------I
-            I    4            I           Mid-fielder           I        4         I
-            --------------------------------------------------------------------I
-            I    5            I           Mid-fielder           I        1         I
-            I______________________________________I
+            |-----------------------------------------------------------------------I
+            I    4            I           Mid-fielder          I        4           I
+            ------------------------------------------------------------------------I
+            I    5            I           Mid-fielder          I        1           I
+            I_______________________________________________________________________I
 =end
 
     #AFTER WE CREATED THE RELATIONSHIP
