@@ -3,4 +3,4 @@ This Repository is for everyone who'd love to Learn Rails. Here, You will find a
 
 Also, I posted some Ruby code, I will post more.
 
-NEVER give up!. Always, learning new things.
+NEVER give up!. Always learning new things.
