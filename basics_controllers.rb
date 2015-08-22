@@ -37,10 +37,10 @@ Controllers controls the Models and Views.
 
                             position = Position.find(1)        #<-- Again, this code should be in the Controllers.
 
-#       -But How Views and Controllers know so much from each other????...HMM!... Let me explain
+#       -But How Views and Controllers know so much from each other????...HMM!...The name has to be the same... Let me explain
 
 #           - Our ' URL '  is called
-                    ' positions '/1 #<-- This is asking for the all ' positions ' with id = 1(obviously will only one), the same we are writing in line 38. Pathesis shouldn't not be there, is just to explain and stress the word
+                    ' positions '/1 #<-- This is asking for the all ' positions ' with id = 1(obviously will only one), the same we wrote in line 38. Pathesis shouldn't not be there, it's just to explain and stress the word
 
 #           - Our ' Controller'  is called
                     app/controllers/' positions '_controller  #<-- Pathesis shouldn't not be there, is just to explain and stress the word.
@@ -56,7 +56,7 @@ Controllers controls the Models and Views.
 
 #                                    WHAT GOES IN OUR CONTROLLER?
 
-# - The Postions Controller looks like this
+# - The Positions Controller looks like this
 
                     class PositionsController < ApplicationController
 
@@ -66,16 +66,16 @@ Controllers controls the Models and Views.
 
                     class PositionsController < ApplicationController
 
-                        def show      #<-- This can be called METHODS or ACTIONS, either way is good.
+                        def show      #<-- This can be called METHOD or ACTION, either way is good.
                         end
 
                     end
 
-#       - If you notice, our ' show method ' has the same name as ' show ' file located in our VIEWs folder
+#       - If you notice, our ' show method ' has the same name as ' show ' file located in our VIEWs folder...
                         app/views/' show' .html.erb #<-- Pathesis shouldn't not be there, is just to explain and stress the word.
 #                   -This is what MAPS one to the other (controllers and views)!!!!!!!!
 
-#       - Inside the METHOD(s) is where we call our MODELS to get DATA from the databse!!!, as shown below.
+#       - Inside the METHOD(s) is where we call our MODELS to get DATA from the database!!!, as shown below.
 
                     class PositionsController < ApplicationController
                         def show
@@ -84,7 +84,7 @@ Controllers controls the Models and Views.
                     end
 
 #       - Now when a request COMES-IN
-                ' positions '/1 #<-- This is going to trigger the Positions Controller and call the SHOW method in our CONTROLLER to get the DATA we are asking
+                ' positions '/1 #<-- This is going to trigger the Positions Controller and call the SHOW method in our CONTROLLER to get the DATA we are asking. (Parenthesis should not be there)
 
 #       - This is the show method from our controller. (same as in the previous lines.
 
@@ -94,33 +94,33 @@ Controllers controls the Models and Views.
                         end
                     end
 
-#       - This is our show view file content.
+#       - This is our show view file content, and it should look like this without "position = Position.find(1)"
 
                     <h2><%= position.position%></h2>
                     <p> Position of: <%=  position.player%></p>  # This two lines will RENDER-OUT to the browser.
 
 
-#                   How in the world our VIEWs have ACCESS to out CONTROLLER???.
+#                   How in the world our VIEWs have ACCESS to out CONTROLLER???
 
 #   - Have you hear of...
                     variable scope
 
-#       -SORRY all our code above would NOT work without ' variable scope ', but is easy to add, just add the " @ " symble to your code like this...
+#       -SORRY all our code above would NOT work without ' variable scope ', but is easy to add, just add the " @ " symbol to your code like this...
 
-#           -In our controller we just have add the (' @ ' )symble like this...
+#           -In our controller we just have add the (' @ ' )symbol like this...
 
                     class PositionsController < ApplicationController
                         def show
-                            @position = Position.find(1)  #<-- @ symble should be in front of the variable.
+                            @position = Position.find(1)  #<-- @ symbol should be in front of the variable.
                         end
                     end
 
-#           - In our SHOW view file we just have to add ( ' @ ' ) symble like this...
+#           - In our ' SHOW view file ' we just have to add ( ' @ ' ) symbol like this...
                     <h2><%= @position.position%></h2>
                     <p> Position of: <%=  @position.player%></p>
 
-#       - The ' @ ' symble is what GRANT the VIEWS to have ACCESS to our Controllers variables.
-#           - when we have @positions in Ruby, it becomes an ' INSTANCE VARIABLE '. like I said it grant view access to variables.
+#       - The ' @ ' symbol is what GRANT the VIEWS to have ACCESS to our Controllers variables.
+#           - when we have @positions in Ruby, it becomes an ' INSTANCE VARIABLE '. like I said it grant ' VIEWs ' access to variables.
 
 
 #               What if We don't want to follow  RAILS CONVENTION ???
@@ -131,7 +131,7 @@ Controllers controls the Models and Views.
 #                               and we decided to call it
                                         ' position.html.erb '
 
-#           - In that Case we can specify the name of our NEW VIEW in our Controller, so it can find it. If you don't specify it, you are in a big trouble.
+#           - In that Case we can specify the name of our NEW VIEW in our Controller, so it can find it. If you don't specify it, you are in a big trouble!
 
                     class PositionsController < ApplicationController
                         def show
@@ -141,63 +141,71 @@ Controllers controls the Models and Views.
                     end
 
 
-#           We have been working to show (or to render) just the Player with the id = 1
+#           We have been working to show (or to render) just the Position with the id = 1
 
-# - How can we make the code be able to show any players with a specific ' id '.
+# - How can we make the code be able to show any position with a specific ' id '.
 #       -For example:
-#                               - What if the user wants to see Player with the id = 2, or id = 3, or id = 4??
+#                   - What if the user wants to see a position with the id = 2, or id = 3, or id = 4??
 
 #       - When we write URL's like this...
-                         ' positions '/1
-#               -Rails will generate for use a new HASH call
+                         ' positions '/1      #<-- No parenthesis! I put parenthesis to stress the word to explain.
+#               -Rails will generate for us a new HASH called
                         params
-#                   -which contain a HASH with a key and a value
+#                   -which contain a HASH with a ' key ' and a ' value '
                         params = {id: ' 1 '}
 
-#       - So, to render a specific player with a specific ' id ' in our Controllers we just have to add this...
+#       - So, to render a specific position with a specific ' id ' in our Controllers we just have to add this...
                     class PositionsController < ApplicationController
                         def show
-                            @position = Position.find(params[:id])  #<-- This is what going to look out for the specifc player in the database, and it's going to reder it
+                            @position = Position.find(params[:id])  #<-- This is what going to look out for the specifc ' position id ' in the database, and it's going to reder it
                         end
                     end
 
-#                       LET's UNDERSTAND PARAMETERS (params)
-#     BEFORE we continue, let 's pretend we have a Database table name ' positions'  with an attribute(column) called player_position.(we created this so you  understand it better, since I have ' position ' as attribute. You can get confuse.)
+
+
+#                                       LET's UNDERSTAND PARAMETERS (params)
+
+
+#     BEFORE we continue, let 's pretend we have a Database table name ' positions'  with an attribute(column) called player_position.(we created this so you  understand it better, since I have ' position ' as attribute, You can get confuse.)
 
 #  - When we write the following URL. ( we are using  ' standard url query parameters ')
-                /positions?player_position=Forward  #<-- Rails will create a new HASH to crate a new position.
+                /positions?player_position=Forward  #<-- Rails will create a new HASH to crate a new player_position.
 
 #       -the URL above will basically do this Hash to create a new player_position...
                 params = { player_position: "Forward"}
 
 #           -This is what is happening from the code above.
-                @position = Position.create(player_position: params[:player_position]) #basically we are taking the ' player_position ' out of the paramenter (in line 171) to create this position.
+                @position = Position.create(player_position: params[:player_position]) #basically we are taking the ' player_position ' out of the paramenter (in line 175) to create this player_position.
 
-#  - Most likely our URL might look like this, where we have a HASH within a HASH
+#  - Most likely our URLs might look like this, where we have a HASH within a HASH
                 /positions?position[:player_position]=Forward
 
 #           - here is the HASH within a HASH from the URL above
                 params = {position: {player_position: "Forward"}}
 
-#       - this is how  we can access the position in the hash within a hash, from the code above.
+#       - this is how  we can access the position in the HASH within a HASH, from the code above.
                 @position = Position.create(player_position: params[:position][:player_positon]) #<-- basically we specify two keys to get what we want inside the hash within a hash(in the case player_position.)
 
 #               -There is an alternative Syntax from the code above. Because our Position Method is expecting a HASH
                 @position = Position.create(params[:position]). #<-- What is going to be sent to ' create ' is the HASH of the position that contains the player_position("Forward"). This is a better way to write it, instead from the code above and recreating a hash.
 
 
-#                       STRONG PARAMETERS!!!!
+#                                                   
 
-                /positions?position[:player_position]=Forward
+
+#                                                   STRONG PARAMETERS!!!!
+
 #       - This code can be dangerous because the USER might be able to set any attributes by sending additional ' keys and values ' for this hash on the URL
+                /positions?position[:player_position]=Forward
                 @position = Position.create(params[:position])
+                
 #       - So, in RAILS 4 we are required to use STRONG PARAMETERS!!!. This makes code more SECURE.
 
 #       - To do a strong parameters, we need to specify the parameter ' key ' the ACTION is expecting
 
-                    require(:position) #we are saying parameter key is requier to sent in from our HASH
+                    require(:position) #we are saying parameter key is requiere to be sent-in from our HASH
 
-#           - and also we need to specify the attributes we will permit to be ' set '' from the HASH
+#           - and also we need to specify the attributes we will permit to be ' set ' from the HASH
                     permit(:position)
 
 # The code should look like this...
@@ -206,17 +214,23 @@ Controllers controls the Models and Views.
 #           - If we need need to ' permit ' more attributes, we can us an ARRAY
                         @position = Position.create(params.require(:position).permit(:player_position, :other_positions))
 
+
+
+
 #                           WHAT, WHEN Strong Parameter are used?
+
 #   - Strong Params are requiere only when:
 
             Creating or Updating    - ...with multiple attributes
 
 
+
+
 #                           RAILS Developer usually Creates API's for a webservice.
 
-# - There are two things you usually supply to Front-End Developers or Mobile Developers.
+# - There are two things we usually supply to Front-End Developers or Mobile Developers.
 
-#       - XML
+#       - 1)    XML
 
                     <?xml version = "1.0" encoding="UTF-8"?>
                     <position>
@@ -226,7 +240,7 @@ Controllers controls the Models and Views.
                     </position>
 
 
-#       - JSON
+#       - 2)  JSON
                     {"position":{"id": 1,"player_position": "Forward", "player_id": 1}}
 
 
@@ -236,17 +250,19 @@ Controllers controls the Models and Views.
                     /positions/1.json
 
 #       - Now, in our Positions Controller,
-#           -Inside of our show method, is where Magic happens
+#           -Inside of our show method, is where Magic happens!!!!
+
                     class PositionsController < ApplicationController
                         def show
                             @position = Position.find(params[:id])
-                            #We need to tell Rails what ' format ' it can ' respond to '
+                            #We need to tell the Method what ' format ' it can ' respond to '
                             respond_to do | format |
                                 format.html #show.html.erb ------ format.html is very common to see, but is not required, and it will not affect anything. It's just reminding that it will render ' show.html.erb ' by default
-                                format.json { render json: @position } #<-- here we are requesting the app to respond to ' json '. After it does, we want to ' render ' as ' json ' this specific ' position '
+                                format.json { render json: @position } #<-- here we are requesting the Show Method to respond to ' json '. After it does, we want to ' render ' as ' json ' with this specific ' position '
                         end
                     end
-#           - This is the responce after format as JSON
+                    
+#           - This is the responce after format as JSON, from the code above
                     {"position":{"id": 1,
                                         "player_position": "Forward",
                                         "player_id": 1}}
@@ -256,7 +272,7 @@ Controllers controls the Models and Views.
 
 #       -If we want the XML representation for
                     /positions/1
-#       -we can send a URL
+#       -We can send a URL
                     /positions/1.xml
 
                     class PositionsController < ApplicationController
@@ -264,13 +280,13 @@ Controllers controls the Models and Views.
                             @position = Position.find(params[:id])
                             #We need to tell Rails what ' format ' it can ' respond to '
                             respond_to do | format |
-                                format.html #show.html.erb ------ format.html is very common to see, but is not required, and it will not affect anything. It's just reminding that it will render ' show.html.erb ' by default
-                                format.json { render json: @position } #<-- here we are requesting the app to respond to ' json '. After it does, we want to ' render ' as ' json ' this specific ' position '
-                                format.xml { render xml: @position } #<-- here we are requesting the app to respond to ' xml '. After it does, we want to ' render ' as 'xml ' this specific ' position '
+                                format.html #show.html.erb ------ format.html is very common to see, but is not required, and it will not affect anything. It's just reminding that it will render ' show.html.erb ' by default.
+                                format.json { render json: @position } #<-- Here, we are requesting the Show Method to respond to ' json '. After it does, we want to ' render ' as ' json ' with this specific ' position '
+                                format.xml { render xml: @position } #<-- Here, we are requesting the Show Method to respond to ' xml '. After it does, we want to ' render ' as 'xml ' with this specific ' position '
                         end
                     end
 
-#       - This is the responce after format as XML
+#       - This is the responce after format as XML, from the code above
 
                     <?xml version = "1.0" encoding="UTF-8"?>
                     <position>
@@ -316,36 +332,39 @@ Controllers controls the Models and Views.
 
                     end
 
+#                                       LET's DO some SPECIFICS
 
-# Let's do Edit action for an example. Remember each action has it's own view
+# Let's do the Edit Action for an example. (Remember each action has it's own view)
     # Pretend we are in the browser, We will see the list of all the player's positions. Every player has its own edit link. When we click the edit link. It will TRIGGER the EDIT ACTION
 
-    # - When it trigger the edit controller, then is going to look for the edit.html.erb
+    # - When it triggers the Edit Method from the Positions Controller, then is going to look for the edit.html.erb
         realmadrid/app/views/position/edit.html.erb
-    # - The edit Action looks like this
+    
+    # - The Edit Action looks like this
                         class PositionsController < ApplicationController
                             def edit
-                                @position = Position.player_position(params[:id]) #<-- by default is going to ' render the edit action', it going to look for the edit.html.erb
+                                @position = Position.player_position(params[:id]) #<-- by default is going to ' render the edit action', then going to look for the edit.html.erb
                             end
                         end
-    # - In the browser, you will see the  form with the attributes you want to edit, with the update button.
+    # - In the browser, you will see the ' form ' with the attributes you want to edit, and with the update button.
 
 
 
-#- Right Now, if we want to edit each Player's Position you CAN. That's NOT good, because what if that Player's Position does not belongs to you?
+#- Right Now, if we want to edit each Player's Position you CAN. That's NOT good, because what if that Player's Position does not belong to you? We DO NOT want other users to edit our information, right?
 
-#-                          LET's DO AUTHANTICATIONS
 
-#           - To do that, we go to our POSITION CONTROLLER an add some code
+#-                                              LET's DO AUTHANTICATIONS
+
+#           - To prevent people to edit our information, we go to our POSITION CONTROLLER an add some code
 
                         class PositionsController < ApplicationController
                             def edit
                                 @position = Position.player_position(params[:id]) #<-- by default is going to ' render the edit action', it going to look for the edit.html.erb
-                                #session is like a user hash- where we can store info (that belong to that user hash when they login)
+                                #session is like a user hash- where we can store info (that belong to that user hash when they login). If we user devise gem, we will have the ' current_user ' helper among other helpers. but let's just use sessions right now.
                                 if session[:player_id] != @position.player_id
-                                    #flash is a helper that allows to send messages back to the user, uncase they did something wrong or alert them.
+                                    #flash is a helper that allows to send messages back to the user, incase they did something wrong or we want to alert them.
                                     flash[:notice] = "You can edit this position"
-                                    #Here we need to rederect the user to the list of the positions, because we don't want to render the ' edit  form' becuae the user might not be allow to edit it
+                                    #Here we need to redirect the user to the list of the positions, because we don't want to render the ' edit  form' becucase the user is not allow to edit the Position
                                     reditect_to(positions_path)
                             end
                         end
@@ -363,8 +382,8 @@ Controllers controls the Models and Views.
         </head>
 
         <body>
-            <% if flash[:notice] %> #here we are saying, if there is a  flash
-                <div id="notice"> <%= flash[:notice] %></div>
+            <% if flash[:notice] %> #here we are saying, if there is a  flash,
+                <div id="notice"> <%= flash[:notice] %></div> #then print the notice
             <%end%>
             <%yield%>
         </body>
@@ -373,7 +392,7 @@ Controllers controls the Models and Views.
 # - After we wrote this code above, we should get redirected to the list of the positions with a notice, if we try to edit a position it does NOT belongs to us.
 
 
-# Back to our Position Controller, Do you remember DRY (Don't Repeat Yourslelf)?
+# Back to our Position Controller, Do you remember DRY (Don't Repeat Yourelf)?
 #           -These three ACTIONS below, require to fetch the position. But we are repeating ourselves
                     class PositionsController < ApplicationController
 
@@ -406,6 +425,7 @@ Controllers controls the Models and Views.
                         def fetch_position
                             @position = Position.find([:id])
                         end
+                        
                         def edit
                         end
 
@@ -417,7 +437,7 @@ Controllers controls the Models and Views.
                     end
 
 
-#           - We know that If we want to edit, update and delete a Position, We need to be authanticated(meaning the Position has to be ours). So we dont want to repeat this code either...
+#           - We know that If we want to edit, update and delete a Position, We need to be authanticated(meaning the Position has to be ours). So we don't want to repeat this code either...
 
                                     if session[:player_id] != @position.player_id
                                         flash[:notice] = "You can edit this position"
@@ -451,3 +471,4 @@ Controllers controls the Models and Views.
                         def destroy
                         end
                     end
+    # AT THIS POINT YOU SHOULD KNOW HOW MODELS, VIEWS, AND CONTROLLERS KNOW EACH OTHER. ALSO, HOW THEY WORK TOGETHER.
