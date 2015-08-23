@@ -112,7 +112,7 @@
 
 # All you need to have in show.html.erb is this....
 
-                    <% position = Position.find(1) %>
+                    <% position = Position.find(1) %>                       #<-- Since, we haven't talk about Controllers, I wrote this code here throughout this file. However, this line of code shouldn't be here. Look at the basics_controllers.rb for the explanations. More importantly, learn the concept of Views so you can understand Controllers. You will see how the Views code in this file changes when we do controllers. 
                     <h2><%= position.position%></h2>
                     <p> Position of: <%=  position.player%> </p>
 
@@ -196,7 +196,7 @@
 
 
 
-# To display something, incase we don't have any players and positions to show. we do this.
+# To display something, incase we don't have any players and positions to show, we do this.
 
                 <% all_positions = Position.all %>
 
@@ -247,22 +247,22 @@
 
 # URL GENERATOR METHODS
 
-Action                                              Code                                       URL
+        Action                                      Code                                       URL
 
-List all positions                          positions_path                          /positions
-New position form                       new_position_path                   /position/new
+List all positions                              positions_path                              /positions
+New position form                               new_position_path                           /position/new
 
 
 #This following paths need a ' position '
 
 position = Position.find(1)
 
-Show a position                         position                                        /positions/1
-Edit a position                            edit_position_path(position)        /position/1/edit
-Delete a position                        position, method: :delete             /position/1
+Show a position                                 position                                    /positions/1
+Edit a position                                 edit_position_path(position)                /position/1/edit
+Delete a position                               position, method: :delete                   /position/1
 
 
 # here is the way you should write it.
 
 
-                                    <% link_to text_to_show, code %>
+                                    <% link_to text_we_want_to_show, code %>
