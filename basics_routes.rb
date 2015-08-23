@@ -6,7 +6,7 @@
 
 =end
 
-# - We did this (line 12-24) in ' basics_views.rb ' file. You might wonder, How was URL and CODE generated for each ACTION in the CONTROLLER?
+# - We did this (line 12-24) in ' basics_views.rb ' file. You might wonder, How both the URL and CODE were generated for each ACTION in the CONTROLLER?
 
         Action                                      Code                                       URL
 
@@ -24,7 +24,7 @@ Delete a position                               position, method: :delete       
 
 
 
-# In order to generate the CODE and URL as you see in the code about, first we need to define ROUTES in ' routes.rb file '
+# In order to generate the CODE and URL as you see in the code above, first we need to defind ROUTES in ' routes.rb file '
 
 #       - In your Rails app, follow this path to find the routes file:
                 realmadrid/config/routes.rb    #<-- Real Madrid is the name of this app, so you might have a different name.
@@ -38,9 +38,9 @@ Delete a position                               position, method: :delete       
                 end
 #           - the code inside the block generates automatically all this PATHS for us for our Controllers.
 
-                    Action(Controller)                                      Code                                       URL
+Action(Controller)                                      Code                                       URL
 
-List all positions(Index)                              positions_path                              /positions
+List all positions(Index)                            positions_path                              /positions
 New position form(New)                               new_position_path                           /position/new
 
 
@@ -48,12 +48,12 @@ New position form(New)                               new_position_path          
 
 position = Position.find(1)
 
-Show a position(Show)                                 position                                    /positions/1
-Edit a position(Edit)                                 edit_position_path(position)                /position/1/edit
+Show a position(Show)                               position                                    /positions/1
+Edit a position(Edit)                               edit_position_path(position)                /position/1/edit
 Delete a position(Destroy)                          position, method: :delete                   /position/1
 
 #here is the rest
-Update a position(Update)                               position, method: :patch        /position
+Update a position(Update)                               position, method: :patch                /position
 
 
 
