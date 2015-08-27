@@ -1,5 +1,6 @@
 #Using iterators, basically it saves time but it takes Practice to understand it...
 
+#                                               ARRAY
 array = [ 1, 2, 3, 4, 5, 6 ]
 
 number = 0
@@ -65,6 +66,8 @@ puts array.inspect
 # [1, 2, 3, 4, 5, 6]
 
 #--------------------------------------------------------------------------------
+#                                                   HASH
+
 
 #Hash are almost the same as arrays, but instead of passing only one argument in ' each ', we pass 2.
 
@@ -105,8 +108,67 @@ end
 # Juan
 # Ordaz
 
+#rembers iterating will not affect the hash values!!!!
+
 #--------------------------------------------------------------------------------
 
+#                                                       TIMES
 
+#times iterator, ONLY works on integers
 
-#rembers iterating will not affect the hash values!!!!
+3.times do
+    puts "BLAH!!"
+end
+
+#This is the out put of the code above
+# BLAH!!
+# BLAH!!
+# BLAH!!
+
+3.times do | number |
+    puts "BLAH!! #{number}"
+end
+
+#This is the out put of the code above
+# BLAH!! 0
+# BLAH!! 1
+# BLAH!! 2
+
+#--------------------------------------------------------------------------------
+
+                                          FOR LOOP
+
+for  number in 1..3
+    puts "This is #{number}"
+end
+
+# #This is the out put of the code above
+# This is 1
+# This is 2
+# This is 3
+
+# we can pass an array...
+
+for number in ["1", "2", "3"]
+    puts "This is number #{number}"
+end
+
+# #This is the out put of the code above
+
+# This is number 1
+# This is number 2
+# This is number 3
+
+animals = ["dog", "mouse", "cow", "mosquito"]
+
+for animals in ["dog", "mouse", "cow", "mosquito"]
+    puts "#{animals}"
+end
+# #This is the out put of the code above
+# dog
+# mouse
+# cow
+# mosquito
+
+# it is important to know using For Loops are different than other iterators
+# variables used to iterate in the for loop exist outside the for loop, while in other iterator  exist only inside the block that is running.
